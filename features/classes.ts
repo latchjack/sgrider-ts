@@ -6,10 +6,10 @@
 */
 
 class Vehicles {
-  drive(): void {
-    console.log('vroom vroom');
-  }
-  honk(): void {
+  //   public drive(): void {
+  //     console.log('vroom vroom');
+  //   }
+  public honk(): void {
     console.log('beep beep');
   }
 }
@@ -33,9 +33,25 @@ class Vehicles {
 | drive so that our constant of car can have a different implementation of it.
 */
 
+// class Car extends Vehicles {
+//     public drive(): void {
+//       console.log('rev rev');
+//     }
+// }
+
+/*
+| drive() is a private method so it can only be called by another method in
+| it's class.
+| If we are ever overriding a method we cannot change the modifier in the
+| child class. (Commented it out in Vehicles for this reason).
+*/
 class Car extends Vehicles {
-  drive(): void {
+  private drive(): void {
     console.log('rev rev');
+  }
+
+  startDrivingProcess(): void {
+    this.drive();
   }
 }
 
@@ -43,7 +59,26 @@ class Car extends Vehicles {
 | As we've redefined drive in the car, when we fire it with car.drive() we get
 | rev rev, instead of vroom vroom.
 */
-
 const car = new Car();
-car.drive();
+// startDrivingProcess is public allowing us to execute the private drive method.
+car.startDrivingProcess();
 car.honk();
+
+/*
+| Method Modifiers
+|___________________
+|
+| Modifiers are a keyword that we can place on different methods and properties
+| inside of a class. The options are public, private and protected. The goal of these
+| modifiers are
+| to restrict access to different functions or different variables. By default every
+| method and property, that we add to a class is going to have the public modifier
+| on it. Until you add a modifier into the class, it is assumed that it is meant
+| to be public.
+| 
+| 
+| Public - this method can be called anywhere anytime.
+| Private - this method can only be called by other methods in this class.
+| Protected - this method can be called by other methods in this class, or by other
+| methods in child classes.
+*/
