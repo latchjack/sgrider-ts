@@ -23,6 +23,10 @@ class Vehicles {
   }
 }
 
+const vehicle = new Vehicles();
+// Can't call honk here as it's not a child of Vehicles.
+// vehicle.honk();
+
 // const fordFocus = new Vehicle();
 // fordFocus.drive();
 // fordFocus.honk();
@@ -79,7 +83,7 @@ class Car extends Vehicles {
 const car = new Car();
 // startDrivingProcess is public allowing us to execute the private drive method.
 car.startDrivingProcess();
-car.honk();
+// car.honk();
 
 /*
 | Method Modifiers
