@@ -103,19 +103,28 @@ const printVehicle = (vehicle: Vehicle): void => {
 printVehicle(oldCivic);
 
 /*
-Version 2.
-
-printSummary only has a summary key in the interface. However if we pass 
-it the oldCivic object as it args in the printSummary function. You see that
-we don't get any errors. This is because TS is not looking at it having the extra
-keys of name, year and broken. It is only looking for the summary method key. 
-
-Because of this we can pass the printSummary function the drink object without
-receiving an error, because it also has a summary key.
-
-The point being, that we can use a single interface to describe the shape/different
-properties of very different objects. This interface is much simpler than the Vehicle
-one from earlier.
+| Version 2.
+| 
+| printSummary only has a summary key in the interface. However if we pass 
+| it the oldCivic object as it args in the printSummary function. You see that
+| we don't get any errors. This is because TS is not looking at it having the extra
+| keys of name, year and broken. It is only looking for the summary method key. 
+| 
+| Because of this we can pass the printSummary function the drink object without
+| receiving an error, because it also has a summary key.
+| 
+| The point being, that we can use a single interface to describe the shape/different
+| properties of very different objects. This interface is much simpler than the Vehicle
+| one from earlier.
+| 
+| Think of the interface like a gatekeeper. Everything that is used by the Reportable
+| interface must have a summary field. 
+| 
+| The general strategy for reusable code in TS is...
+| 
+| 1 . To create functions that accept arguments that are typed with interfaces.
+| 
+| 2. Objects/Classes can decide to implement a given interface to work with a function.
 */
 interface isReportable {
   summary(): string;
