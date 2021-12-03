@@ -5,11 +5,20 @@
 | 
 */
 
+// class Vehicles {
+//     public drive(): void {
+//       console.log('vroom vroom');
+//     }
+//   public honk(): void {
+//     console.log('beep beep');
+//   }
+// }
+
 class Vehicles {
-  //   public drive(): void {
-  //     console.log('vroom vroom');
+  //   private honk(): void {
+  //     console.log('beep beep');
   //   }
-  public honk(): void {
+  protected honk(): void {
     console.log('beep beep');
   }
 }
@@ -44,6 +53,8 @@ class Vehicles {
 | it's class.
 | If we are ever overriding a method we cannot change the modifier in the
 | child class. (Commented it out in Vehicles for this reason).
+| NOTE: We do not define a method as private for security reasons. The only
+| reason we do this is for restrictions, to keep the code from breaking.
 */
 class Car extends Vehicles {
   private drive(): void {
@@ -52,6 +63,12 @@ class Car extends Vehicles {
 
   startDrivingProcess(): void {
     this.drive();
+    /*
+    | If we make honk private in Vehicle we wont be able to access it here,
+    | but by making it protected, we can access it. However it cannot be
+    | accessed anywhere outside of this child class.
+    */
+    this.honk();
   }
 }
 
