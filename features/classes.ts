@@ -3,6 +3,27 @@
 | different fields (values) and methods (functions) attached to it. We use
 | these classes to represent different things or objects inside our applications.
 | 
+| Why do we care about Classes?
+| Classes give us an easy way to reuse code.
+*/
+
+/*
+| Method Modifiers
+|___________________
+|
+| Modifiers are a keyword that we can place on different methods and properties
+| inside of a class. The options are public, private and protected. The goal of these
+| modifiers are
+| to restrict access to different functions or different variables. By default every
+| method and property, that we add to a class is going to have the public modifier
+| on it. Until you add a modifier into the class, it is assumed that it is meant
+| to be public.
+| 
+| 
+| Public - this method can be called anywhere anytime.
+| Private - this method can only be called by other methods in this class.
+| Protected - this method can be called by other methods in this class, or by other
+| methods in child classes.
 */
 
 // class Vehicles {
@@ -95,8 +116,23 @@ console.log(vehicle.color); // result would be 'red' if we don't pass it args
 | child class. (Commented it out in Vehicles for this reason).
 | NOTE: We do not define a method as private for security reasons. The only
 | reason we do this is for restrictions, to keep the code from breaking.
+|
+| Child classes that have constructors must call their parent's constructor
+| too. To do this, we call execute the super() function inside the child
+| class' constructor. We then give it the args it requires, in this case a
+| string for the color property (Commented out constructor).
+| Another way would be to add the color variable to the Car constructor's args.
+| We now have a second arg called color and in the super. We dont need to
+| add on the public modifier as it already belongs to the Vehicles class.
+| We then pass the color through as args to the super function.
 */
 class Car extends Vehicles {
+  // constructor(public wheels: number) {
+  //     super('green');
+  // }
+  constructor(public wheels: number, color: string) {
+    super(color);
+  }
   private drive(): void {
     console.log('rev rev');
   }
@@ -137,27 +173,10 @@ class Car extends Vehicles {
 /*
 | As we've redefined drive in the car, when we fire it with car.drive() we get
 | rev rev, instead of vroom vroom.
+| We pass this instance of Car the args it needs for it's constructors. Number
+| of wheels (4) and it's colour 'grey'.
 */
-// const car = new Car();
+const car = new Car(4, 'grey');
 // startDrivingProcess is public allowing us to execute the private drive method.
 // car.startDrivingProcess();
 // car.honk();
-
-/*
-| Method Modifiers
-|___________________
-|
-| Modifiers are a keyword that we can place on different methods and properties
-| inside of a class. The options are public, private and protected. The goal of these
-| modifiers are
-| to restrict access to different functions or different variables. By default every
-| method and property, that we add to a class is going to have the public modifier
-| on it. Until you add a modifier into the class, it is assumed that it is meant
-| to be public.
-| 
-| 
-| Public - this method can be called anywhere anytime.
-| Private - this method can only be called by other methods in this class.
-| Protected - this method can be called by other methods in this class, or by other
-| methods in child classes.
-*/
