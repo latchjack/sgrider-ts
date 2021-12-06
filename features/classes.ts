@@ -113,22 +113,25 @@ class Car extends Vehicles {
 }
 
 /*
-
-A simpler way to do the above...
-By adding public to the front of the color we are going to take whatever
-first args goes into the new instance of Vehicles, is going to be defined
-as it's colour.
-
-class Vehicles {
-
-
-  constructor(public color: string) {
-  }
-
-  protected honk(): void {
-    console.log('beep beep');
-  }
-}
+| 
+| A simpler way to do the above...
+| By adding the public modifier to the front of the color we are going to take
+| whatever first args goes into the new instance of Vehicles, is going to be
+| defined as it's colour.
+| 
+| Note: 
+| - If we used the private modifier we would no longer be able to access/read
+| the variable outside of the class.
+| - If we used the protected modifier we would only be able to access the color
+| via an object that extends from the class.
+| 
+| class Vehicles {
+|   constructor(public color: string) {}
+| 
+|   protected honk(): void {
+|     console.log('beep beep');
+|   }
+| }
 */
 
 /*
