@@ -6,24 +6,60 @@
 */
 
 // class Vehicles {
-//     public drive(): void {
-//       console.log('vroom vroom');
-//     }
+//   public drive(): void {
+//     console.log('vroom vroom');
+//   }
+// //   private honk(): void {
+// //     console.log('beep beep');
+// //   }
 //   public honk(): void {
 //     console.log('beep beep');
 //   }
 // }
 
+/*
+| Traditionally we initialise a variable when we declare it in a class.
+| You can choose to define a default variable in the class in 2 ways...
+|
+| 1. A default starting value
+| color: string = 'red';
+|
+| 2. The constructor function
+| constructor(color: string) {
+|   this.color = color;   
+| }
+*/
 class Vehicles {
-  //   private honk(): void {
-  //     console.log('beep beep');
-  //   }
+  /*
+    | If we use color: string = 'red', every time we create an instance of
+    | vehicle, the instance  will have a color property that is a string
+    | and it's default starting value will be 'red'.
+    */
+  // color: string = 'red';
+  color: string;
+
+  constructor(color: string) {
+    this.color = color;
+  }
+
   protected honk(): void {
     console.log('beep beep');
   }
 }
+/*
+| We may want to pass in arguments when we create a new Vehicles object,
+| to do this we use the constructor function inside the class.
+| The constructor function is executed when we create a new instance of the
+| class. The arguments for the constructor will be whatever we pass in when we
+| create the instance...
+| i.e.
+| Sometimes we won't want a red car, so you'll want to initialise with
+| another colour. The constructor will take the args given to the newly
+| initialised vehicle to overwrite the default 'red'.
+*/
+const vehicle = new Vehicles('orange');
+console.log(vehicle.color); // result would be 'red' if we don't pass it args
 
-const vehicle = new Vehicles();
 // Can't call honk here as it's not a child of Vehicles.
 // vehicle.honk();
 
@@ -77,12 +113,31 @@ class Car extends Vehicles {
 }
 
 /*
+
+A simpler way to do the above...
+By adding public to the front of the color we are going to take whatever
+first args goes into the new instance of Vehicles, is going to be defined
+as it's colour.
+
+class Vehicles {
+
+
+  constructor(public color: string) {
+  }
+
+  protected honk(): void {
+    console.log('beep beep');
+  }
+}
+*/
+
+/*
 | As we've redefined drive in the car, when we fire it with car.drive() we get
 | rev rev, instead of vroom vroom.
 */
-const car = new Car();
+// const car = new Car();
 // startDrivingProcess is public allowing us to execute the private drive method.
-car.startDrivingProcess();
+// car.startDrivingProcess();
 // car.honk();
 
 /*
