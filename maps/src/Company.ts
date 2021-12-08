@@ -1,13 +1,15 @@
 import faker from 'faker';
+import { Mappable } from './CustomMap';
 
 // export the Company class and tell TS what types of value it'll have
-export class Company {
+export class Company implements Mappable {
   companyName: string;
   catchPhrase: string;
   location: {
     lat: number;
     lng: number;
   };
+  color: string = 'green';
 
   // Use the constructor to initialise each Company with data for the values
   constructor() {

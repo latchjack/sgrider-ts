@@ -136882,7 +136882,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.User = void 0;
 
-var faker_1 = __importDefault(require("faker")); // export the User class and tell TS what types of value it'll have
+var faker_1 = __importDefault(require("faker"));
+/*
+By 'implementing' Mappable we are telling TS that an instance of
+the User class will satisfy all of the properties required by the
+Mappable interface.
+We're not required to use the implements feature of TS, but it
+makes it easier to see where errors are coming from when working
+with instances of classes. If you fail to implement an interface
+TS will tell you what is missing and point you to the true source
+of the issue.
+
+Export the User class and tell TS what types of value it'll have
+*/
 
 
 var User =
@@ -136890,6 +136902,7 @@ var User =
 function () {
   // Use the constructor to initialise each User with data for the values
   function User() {
+    this.color = 'red';
     this.name = faker_1.default.name.firstName();
     this.location = {
       lat: parseFloat(faker_1.default.address.latitude()),
@@ -136927,6 +136940,7 @@ var Company =
 function () {
   // Use the constructor to initialise each Company with data for the values
   function Company() {
+    this.color = 'green';
     this.companyName = faker_1.default.company.companyName();
     this.catchPhrase = faker_1.default.company.catchPhrase();
     this.location = {

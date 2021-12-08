@@ -13,13 +13,15 @@ user or be used to refer to the User type.
 We create an interface to instruct every other class on how they
 can be used as an argument to work with the addMarker function.
 Mappable becomes a 'gatekeeper' to the addMarker function.
+All objects must contain location and markerContent.
 */
-interface Mappable {
+export interface Mappable {
   location: {
     lat: number;
     lng: number;
   };
   markerContent(): string;
+  color: string;
 }
 
 /*
