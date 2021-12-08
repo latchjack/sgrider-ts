@@ -136936,7 +136936,17 @@ function () {
 
 exports.Company = Company;
 },{"faker":"node_modules/faker/index.js"}],"src/CustomMap.ts":[function(require,module,exports) {
-"use strict";
+"use strict"; // import { User } from './User';
+// import { Company } from './Company';
+
+/*
+In TS, classes have a dual purpose. When we make a class, we can
+use it to create a new instance of an object. We can also use it
+to refer to that type as well.
+
+e.g. The User class can be used to create a new instance of a
+user or be used to refer to the User type.
+*/
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -136962,6 +136972,44 @@ function () {
       }
     });
   }
+  /*
+  This function is better as it's dryer. It takes both User or Company
+  to generate the marker on the map.
+     Using the Or (|) operator makes TS look at both types. We can only
+  refer to properties on the arguments (User/Company) if they exist on
+  both types.
+  
+  (i.e location is kept because both Company and User have a location
+  and the location object both has lat and lng keys which have a type
+  of number. However name, companyName and catchPhrase aren't on both
+  objects).
+     addMarker(mappable: User | Company): void {} is not the best solution
+  because if we start to add more classes to the args of addMarker, it
+  would keep growing to the point of being unreadable.
+     To avoid this we invert the dependancy. We use an interface to tell
+  all of the classes they need to have a location object with the lat
+  and lng keys with the types of numbers.
+  */
+  //   addMarker(mappable: User | Company): void {
+  //     new google.maps.Marker({
+  //       map: this.googleMap,
+  //       position: {
+  //         lat: mappable.location.lat,
+  //         lng: mappable.location.lng,
+  //       },
+  //     });
+  //   }
+
+
+  CustomMap.prototype.addMarker = function (mappable) {
+    new google.maps.Marker({
+      map: this.googleMap,
+      position: {
+        lat: mappable.location.lat,
+        lng: mappable.location.lng
+      }
+    });
+  };
 
   return CustomMap;
 }();
@@ -136978,13 +137026,19 @@ var User_1 = require("./User");
 
 var Company_1 = require("./Company");
 
-var CustomMap_1 = require("./CustomMap");
+var CustomMap_1 = require("./CustomMap"); // Create an instance of a User
 
-var user = new User_1.User();
+
+var user = new User_1.User(); // Create an instance of a Company
+
 var company = new Company_1.Company(); // Pass in the div with the id of 'map'
 
-new CustomMap_1.CustomMap('map');
-console.log(user, company);
+var customMap = new CustomMap_1.CustomMap('map'); // Not DRY
+// customMap.addUserMarker(user);
+// customMap.addCompanyMarker(company);
+
+customMap.addMarker(user);
+customMap.addMarker(company);
 },{"./User":"src/User.ts","./Company":"src/Company.ts","./CustomMap":"src/CustomMap.ts"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
