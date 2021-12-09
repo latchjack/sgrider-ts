@@ -82,6 +82,14 @@ Runs the compiled code
 
 Runs both start:build and start:run at the same time
 
+_(Looks at every script beginning with 'npm:start:' and runs it)_
+
 ```json
-"start": "concurrently npm:start:\*" =
+"start": "concurrently npm:start:*" =
+```
+
+We then just need to run this via the command
+
+```bash
+$ npm start
 ```
