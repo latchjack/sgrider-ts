@@ -1,3 +1,5 @@
+import { Sorter } from './Sorter';
+
 /*
 To satisfy the Sortable interface this class needs to have
 a length, compare and swap methods.
@@ -13,8 +15,10 @@ We then put the array of letters back together to return
 the string.
 */
 
-export class CharactersCollection {
-  constructor(public data: string) {}
+export class CharactersCollection extends Sorter {
+  constructor(public data: string) {
+    super();
+  }
 
   get length(): number {
     return this.data.length;

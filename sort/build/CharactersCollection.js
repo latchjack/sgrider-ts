@@ -1,4 +1,7 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CharactersCollection = void 0;
+const Sorter_1 = require("./Sorter");
 /*
 To satisfy the Sortable interface this class needs to have
 a length, compare and swap methods.
@@ -13,10 +16,9 @@ compare the letters against eachother and swap them around.
 We then put the array of letters back together to return
 the string.
 */
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CharactersCollection = void 0;
-class CharactersCollection {
+class CharactersCollection extends Sorter_1.Sorter {
     constructor(data) {
+        super();
         this.data = data;
     }
     get length() {
