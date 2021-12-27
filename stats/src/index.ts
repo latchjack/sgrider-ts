@@ -38,11 +38,24 @@ We can find out how many times Man United won by iterating over the
 arrays,
 */
 
+/*
+Instead of using this MatchResult object we're going to use an enum.
+Enum is short for enumeration. It's purpose is to be an object that
+stores closely related values. These values will always be numbers
+or strings.
+
 const MatchResult = {
   HomeWin: 'H',
   AwayWin: 'A',
   Draw: 'D',
 };
+*/
+
+enum MatchResult {
+  HomeWin = 'H',
+  AwayWin = 'A',
+  Draw = 'D',
+}
 
 let manUnitedWins = 0;
 
