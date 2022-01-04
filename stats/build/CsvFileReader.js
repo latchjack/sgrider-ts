@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CsvFileReader = void 0;
 const fs_1 = __importDefault(require("fs"));
 // import { MatchResult } from './MatchResult';
+// We replace MatchData with T
 // type MatchData = [Date, string, string, number, number, MatchResult, string];
 /*
 We're going to read through the .csv file, so we use the fs library.
@@ -31,6 +32,15 @@ representing a match.
 ________________________
 Added generics to CsvFileReader with the name T. Generics are often
 assigned a single letter as it's name but this could be named anything you wanted i.e CsvFileReader<TypeOfData> or CsvFileReader<Anything>.
+*/
+/*
+PREVIOUSLY WAS...
+export abstract class CsvFileReader<MatchData> {
+  data: MatchData[] = [];
+
+  constructor(public filename: string) {}
+
+  abstract mapRow(row: string[]): MatchData;
 */
 class CsvFileReader {
     constructor(filename) {

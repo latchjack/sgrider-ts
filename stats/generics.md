@@ -27,3 +27,25 @@ const holdString = new HoldItem<string>();
 holdString.data = 'Hi';
 
 ```
+
+```js
+/*
+By using generics we are able to say that the type we
+are giving to HoldItem is a number with the arg name
+of T
+*/
+
+// T's type is a number
+class HoldItem<T> {
+    // The data is a number
+    data: T;
+
+    // The add method takes and returns a number.
+    add(a: T): T {
+        return a;
+    }
+}
+
+holdNumber.data =
+
+```

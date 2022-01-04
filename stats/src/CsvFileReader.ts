@@ -1,6 +1,7 @@
 import fs from 'fs';
 // import { MatchResult } from './MatchResult';
 
+// We replace MatchData with T
 // type MatchData = [Date, string, string, number, number, MatchResult, string];
 
 /*
@@ -27,6 +28,16 @@ representing a match.
 ________________________
 Added generics to CsvFileReader with the name T. Generics are often
 assigned a single letter as it's name but this could be named anything you wanted i.e CsvFileReader<TypeOfData> or CsvFileReader<Anything>.
+*/
+
+/*
+PREVIOUSLY WAS...
+export abstract class CsvFileReader<MatchData> {
+  data: MatchData[] = [];
+
+  constructor(public filename: string) {}
+
+  abstract mapRow(row: string[]): MatchData;
 */
 
 export abstract class CsvFileReader<T> {
