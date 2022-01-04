@@ -5,7 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CsvFileReader = void 0;
 const fs_1 = __importDefault(require("fs"));
-const utils_1 = require("./utils");
+// import { MatchResult } from './MatchResult';
+// type MatchData = [Date, string, string, number, number, MatchResult, string];
 /*
 We're going to read through the .csv file, so we use the fs library.
 We then tell fs to use the utf-8 encoding. This is because readFileSync
@@ -26,6 +27,10 @@ So we will need to parse the data it into a more useable data structure.
 
 The end product will be an array of arrays, with each inner array
 representing a match.
+
+________________________
+Added generics to CsvFileReader with the name T. Generics are often
+assigned a single letter as it's name but this could be named anything you wanted i.e CsvFileReader<TypeOfData> or CsvFileReader<Anything>.
 */
 class CsvFileReader {
     constructor(filename) {
@@ -42,17 +47,6 @@ class CsvFileReader {
             return row.split(',');
         })
             .map(this.mapRow);
-    }
-    mapRow(row) {
-        return [
-            (0, utils_1.dateStringToDate)(row[0]),
-            row[1],
-            row[2],
-            parseInt(row[3]),
-            parseInt(row[4]),
-            row[5],
-            row[6],
-        ];
     }
 }
 exports.CsvFileReader = CsvFileReader;
