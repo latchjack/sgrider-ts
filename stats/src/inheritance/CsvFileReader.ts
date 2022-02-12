@@ -1,8 +1,8 @@
 import fs from 'fs';
-import { dateStringToDate } from './utils';
-import { MatchResult } from './MatchResult';
+// import { MatchResult } from './MatchResult';
 
-type MatchData = [Date, string, string, number, number, MatchResult, string];
+// We replace MatchData with T
+// type MatchData = [Date, string, string, number, number, MatchResult, string];
 
 /*
 We're going to read through the .csv file, so we use the fs library.
@@ -24,12 +24,28 @@ So we will need to parse the data it into a more useable data structure.
 
 The end product will be an array of arrays, with each inner array
 representing a match.
+
+________________________
+Added generics to CsvFileReader with the name T. Generics are often
+assigned a single letter as it's name but this could be named anything you wanted i.e CsvFileReader<TypeOfData> or CsvFileReader<Anything>.
 */
 
-export class CsvFileReader {
+/*
+PREVIOUSLY WAS...
+export abstract class CsvFileReader<MatchData> {
   data: MatchData[] = [];
 
   constructor(public filename: string) {}
+
+  abstract mapRow(row: string[]): MatchData;
+*/
+
+export abstract class CsvFileReader<T> {
+  data: T[] = [];
+
+  constructor(public filename: string) {}
+
+  abstract mapRow(row: string[]): T;
 
   read(): void {
     this.data = fs
@@ -40,16 +56,6 @@ export class CsvFileReader {
       .map((row: string): string[] => {
         return row.split(',');
       })
-      .map((row: string[]): MatchData => {
-        return [
-          dateStringToDate(row[0]),
-          row[1],
-          row[2],
-          parseInt(row[3]),
-          parseInt(row[4]),
-          row[5] as MatchResult, // Type assertion
-          row[6],
-        ];
-      });
+      .map(this.mapRow);
   }
 }
