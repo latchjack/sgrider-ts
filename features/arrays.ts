@@ -42,7 +42,7 @@ const carsByBrand = [['focus', 'yaris', 'astra']];
 |
 | 1. TS can do type inference when extracting values from an array.
 |
-| 2. TS can prevent us from adding incompatible valeus to the artray.
+| 2. TS can prevent us from adding incompatible values to the array.
 |
 | 3. We can get help with map, forEach and reduce functions.
 |

@@ -14,7 +14,7 @@ export class MatchReader extends CsvFileReader<MatchData> {
       parseInt(row[3]),
       parseInt(row[4]),
       row[5] as MatchResult, // Type assertion
-      row[6],
+      row[6]
     ];
   }
 }

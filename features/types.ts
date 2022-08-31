@@ -24,7 +24,7 @@
 | functions, classes, array, objects, or any types we create.
 |
 | Why do we say there are 2 categories?
-| We say there is a seperate cateogory of types because we can write some code
+| We say there is a separate category of types because we can write some code
 | that can trick TS into believing one value is a different type for specific reasons.
 |
 | Why do we care about types?
@@ -37,7 +37,7 @@ const today = new Date();
 today.getMonth();
 
 const person = {
-  age: 20,
+  age: 20
 };
 
 class Color {}
