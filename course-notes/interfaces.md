@@ -124,7 +124,7 @@ interface must have a summary field.
 
 The general strategy for reusable code in TS is...
 
-1 . To create functions that accept arguments that are typed with interfaces.
+1. To create functions that accept arguments that are typed with interfaces.
 
 2. Objects/Classes can decide to implement a given interface to work with a function.
 
