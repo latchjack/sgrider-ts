@@ -9,7 +9,7 @@ const csvFileReader = new CsvFileReader('basketball.csv');
 const gameReader = new GameReader(csvFileReader);
 gameReader.load();
 
-const summary = new Summary(new WinsAnalysis('Heat'), new ConsoleReport());
+const summary = new Summary(new WinsAnalysis('Celtics'), new ConsoleReport());
 summary.buildAndPrintReport(gameReader.games);
 
 const summary2 = new Summary(new WinsAnalysis('Heat'), new HtmlReport());
