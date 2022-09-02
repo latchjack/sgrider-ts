@@ -12,5 +12,14 @@ gameReader.load();
 const summary = new Summary(new WinsAnalysis('Celtics'), new ConsoleReport());
 summary.buildAndPrintReport(gameReader.games);
 
-const summary2 = new Summary(new WinsAnalysis('Heat'), new HtmlReport());
+const summary2 = new Summary(
+  new WinsAnalysis('Heat'),
+  new HtmlReport('Heat-report.html')
+);
 summary2.buildAndPrintReport(gameReader.games);
+
+const htmlSummary = Summary.winsAnalysisWithHtmlReport('Wizards', 'wizards');
+htmlSummary.buildAndPrintReport(gameReader.games);
+
+const htmlSummary2 = Summary.winsAnalysisWithHtmlReport('Magic', 'magic');
+htmlSummary2.buildAndPrintReport(gameReader.games);

@@ -6,6 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.HtmlReport = void 0;
 const fs_1 = __importDefault(require("fs"));
 class HtmlReport {
+    constructor(filename) {
+        this.filename = filename;
+    }
     print(report) {
         const html = `
       <div>
@@ -13,7 +16,7 @@ class HtmlReport {
         <div>${report}</div>
       </div>
     `;
-        fs_1.default.writeFileSync('report.html', html);
+        fs_1.default.writeFileSync(this.filename, html);
     }
 }
 exports.HtmlReport = HtmlReport;
