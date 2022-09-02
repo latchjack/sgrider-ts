@@ -2,10 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GameReader = void 0;
 const utils_1 = require("./utils");
+const CsvFileReader_1 = require("./CsvFileReader");
 class GameReader {
     constructor(reader) {
         this.reader = reader;
         this.games = [];
+    }
+    static fromCsv(filename) {
+        return new GameReader(new CsvFileReader_1.CsvFileReader(filename));
     }
     load() {
         this.reader.read();
