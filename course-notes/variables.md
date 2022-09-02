@@ -1,11 +1,11 @@
-// Type Annotations
+# Type Annotations
 
-/* 
-| This is our type annotation, we're telling the var it's a
-| number, and that we'll only ever assign the variable a
-| number.
-*/
-let apples: number = 5;
+This is our type annotation, we're telling the var it's a
+number, and that we'll only ever assign the variable a
+number.
+
+```typescript
+`let apples: number = 5;`;
 
 // Other annotation examples.
 const isTrue: boolean = true;
@@ -31,7 +31,7 @@ class Car {}
 // Object literals
 let point: { x: number; y: number } = {
   x: 10,
-  y: 20,
+  y: 20
 };
 
 // Functions
@@ -40,33 +40,32 @@ let point: { x: number; y: number } = {
 const logNumber: (i: number) => void = (i: number) => {
   console.log(i);
 };
+```
 
-/* 
-| Variable Declaration | Variable Initalisation
-|       const color      =     'red';
-|
-| The rule of Type Inference is...
-| If variable and declaration are on the same line, TS will figure out the type
-| of 'color' for us
-*/
+| Variable Declaration | Variable Initialisation |
+| -------------------- | ----------------------- |
+| const color =        | "red"                   |
 
-// When to use annotation
+The rule of Type Inference is...
+If variable and declaration are on the same line, TS will figure out the type
+of 'color' for us
 
-/* 
-| 1. 
-| When we have a function that returns the 'any' type
-| (TS can't analyse the type 'any' for errors. So we avoid 'any' as much as possible.)
-*/
+## When to use annotation
+
+1. When we have a function that returns the 'any' type
+   (TS can't analyse the type 'any' for errors. So we avoid 'any' as much as possible.)
+
+```typescript
 const json = '{"x": 10, "y": 20}';
 // First declaration would return the type of any if you hover over coordinates var.
 // const coordinates = JSON.parse(json);
 const coordinates: { x: number; y: number } = JSON.parse(json);
 console.log(coordinates); // returns {x: 10, y: 20};
+```
 
-/* 
-| 2.
-| When we declare a variable on one line and initialise it later. 
-*/
+2. When we declare a variable on one line and initialise it later.
+
+```typescript
 let words = ['red', 'green', 'blue'];
 // If we didn't tell TS this is a boolean it'll have a type of 'any'.
 let foundWord: boolean;
@@ -76,19 +75,19 @@ for (let i = 0; i < words.length; i++) {
     foundWord = true;
   }
 }
+```
 
-/* 
-| 3.
-| When we have a variable whose type cannot be inferred correctly.
-*/
-let numbers = [-10, -1, 12];
-// Here we tell TS that numberAboveZero will either be a boolean or a number.
-let numberAboveZero: boolean | number = false;
+3. When we have a variable whose type cannot be inferred correctly.
 
-/*
-| We're looping through the numbers array, if we find a number above 0, we want to
-| assign it to numberAboveZero, otherwise we want to assign false to numberAboveZero.
-*/
+`let numbers = [-10, -1, 12];`
+
+Here we tell TS that numberAboveZero will either be a boolean or a number.
+
+`let numberAboveZero: boolean | number = false;`
+
+We're looping through the numbers array, if we find a number above 0, we want to assign it to numberAboveZero, otherwise we want to assign false to numberAboveZero.
+
+```typescript
 for (let i = 0; i < numbers.length; i++) {
   if (numbers[i] > 0) {
     numberAboveZero = numbers[i];
@@ -96,3 +95,4 @@ for (let i = 0; i < numbers.length; i++) {
     numberAboveZero = false;
   }
 }
+```
