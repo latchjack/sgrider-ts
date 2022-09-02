@@ -1,7 +1,7 @@
-import { CsvFileReader } from './CsvFileReader';
+import { GameReader } from './GameReader';
 import { GameResult } from './GameResult';
 
-const reader = new CsvFileReader('basketball.csv');
+const reader = new GameReader('basketball.csv');
 reader.read();
 
 let heatWins = 0;
