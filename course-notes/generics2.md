@@ -49,3 +49,73 @@ class HoldItem<T> {
 holdNumber.data =
 
 ```
+
+## Generics with functions
+
+```typescript
+// Very repetitive functions
+function printString(arr: string[]): void {
+  for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+  }
+}
+function printNumbers(arr: numbers[]): void {
+  for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+  }
+}
+
+printString(['a', 'b', 'c']);
+printNumbers([1, 2, 3]);
+
+// The above could've used generics to be reusable...
+
+function printAnything<T>(arr: T[]): void {
+  for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+  }
+}
+
+printAnything<string>(['a', 'b', 'c']);
+printAnything<number>([1, 2, 3]);
+```
+
+## Generic Constraints
+
+We have 2 classes, Car and House
+
+```typescript
+class Car {
+  print() {
+    console.log('I am a car');
+  }
+}
+
+class House {
+  print() {
+    console.log('I am a house');
+  }
+}
+
+// A constraint tells TS that there will be a print method available
+interface Printable {
+  print(): void;
+}
+
+/*
+This generic function will take an array, loop over it and call the print method on each
+By extending the Printable interface, this is us telling TS that whatever type T we put into
+the func, it'll have all of the properties that Printable has.
+*/
+function printHousesOrCars<T extends Printable>(arr: T[]): void {
+  for (let i = 0; i < arr.length; i++) {
+    arr[i].print();
+  }
+}
+
+// This would give us an error because the numbers cannot have the print method on them.
+printHousesOrCars([1, 2, 3]);
+
+// This would result in no error as both instances of the classes have print methods.
+printHousesOrCars([new House(), new Car()]);
+```
