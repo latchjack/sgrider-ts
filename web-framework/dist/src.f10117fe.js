@@ -136,6 +136,8 @@ function () {
     return this.data[propName];
   };
 
+  User.prototype.set = function (update) {};
+
   return User;
 }();
 
@@ -153,7 +155,14 @@ var user = new User_1.User({
   name: 'j',
   age: 20
 });
-console.log(user.get('age'));
+console.log(user.get('age')); // 20
+
+user.set({
+  name: 'k',
+  age: 30
+}); //
+
+console.log(user.get('age')); // 30
 },{"./models/User":"src/models/User.ts"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
