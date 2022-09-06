@@ -116,6 +116,8 @@ function printHousesOrCars<T extends Printable>(arr: T[]): void {
 // This would give us an error because the numbers cannot have the print method on them.
 printHousesOrCars([1, 2, 3]);
 
-// This would result in no error as both instances of the classes have print methods.
-printHousesOrCars([new House(), new Car()]);
+// These would result in no error as both instances of the classes have print methods.
+printHousesOrCars<House>([new House(), new House()]);
+printHousesOrCars<Car>([new Car(), new Car()]);
+printHousesOrCars<House | Car>([new House(), new Car()]);
 ```
