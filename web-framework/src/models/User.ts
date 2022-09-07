@@ -1,14 +1,16 @@
-interface UserProps {
+import { Eventing } from './Eventing';
+import { Sync } from './Sync';
+import { ROUTE_USERS } from '../constants';
+
+export interface UserProps {
+  id?: number;
   name?: string;
   age?: number;
 }
 
-// A type alias - saves us rewriting this type on each callback's type.
-// A function that returns nothing 'void'.
-type Callback = () => void;
-
 export class User {
-  events: { [key: string]: Callback[] } = {};
+  public events: Eventing = new Eventing();
+  public sync: Sync<UserProps> = new Sync<UserProps>(ROUTE_USERS);
 
   constructor(private data: UserProps) {}
 
@@ -19,20 +21,4 @@ export class User {
   set(update: UserProps): void {
     Object.assign(this.data, update);
   }
-
-  on(eventName: string, callback: Callback): void {
-    const handlers = this.events[eventName] || [];
-    handlers.push(callback);
-    this.events[eventName] = handlers;
-  }
-
-  trigger(eventName: string): void {
-    const handlers = this.events[eventName];
-    if (!handlers || handlers.length === 0) return;
-    handlers.forEach((callback) => {
-      callback();
-    });
-  }
-
-  save() {}
 }
